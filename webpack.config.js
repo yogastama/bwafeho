@@ -1,24 +1,36 @@
+// require path dan filesystem os kita
 const path = require("path");
 const fs = require("fs");
 
+// require dependencies
+
+// require dev webpack
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+// require dev html webpack
 const HTMLWebpackPlugin = require("html-webpack-plugin");
+// require minimal image buat limitasi saat build sesuai di env.js
 const ImageMinPlugin = require("imagemin-webpack-plugin").default;
+// require dev minifycss buat meminimalkan css saat build
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// clean webpack
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
+// require file environmetnya
 const environment = require("./configs/env");
-
+// saaat ngoding, file kita mau taruh di templates
 const templateFiles = fs.readdirSync(
   path.resolve(__dirname, environment.paths.source, "templates")
 );
+// gunakan html plugin entries
 const htmlPluginEntries = templateFiles.map(
   (template) =>
     new HTMLWebpackPlugin({
       inject: true,
       hash: false,
       filename: template,
+      // path template nya
       template: path.resolve(environment.paths.source, "templates", template),
+      // path untuk favicon
       favicon: path.resolve(environment.paths.source, "images", "favicon.ico"),
     })
 );
