@@ -1,8 +1,13 @@
 const colors = require("tailwindcss/colors");
 
 module.exports = {
+  // purge ini berfungsi untuk mencari semua kelas2 tailwind di seluruh file html dan js
+  // jika ada kelasnya biarin agar bisa dilanjutin ke css minify
+  // jika gada gausah dilanjutin ke css minify
   purge: {
+    // disini toggle purgenya
     enabled: true,
+    // cari semua di file html dan js
     content: ["./**/*.html", "./**/*.js"],
   },
   presets: [],
@@ -29,6 +34,11 @@ module.exports = {
       indigo: colors.indigo,
       purple: colors.violet,
       pink: colors.pink,
+      // kalo mau tambahin/ edit warna bisa gini
+      // pink: {
+      //   ...colors.pink,
+      //   100:'#fff'
+      // },
     },
     spacing: {
       px: "1px",
